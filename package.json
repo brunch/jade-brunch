@@ -1,0 +1,27 @@
+{
+  "name": "jade-brunch",
+  "version": "1.0.0",
+  "description": "Adds Jade support to brunch.",
+  "author": "Paul Miller (http://paulmillr.com/)",
+  "homepage": "https://github.com/brunch/jade-brunch",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:brunch/jade-brunch.git"
+  },
+  "main": "./lib/index",
+  "scripts": {
+    "postinstall": "./node_modules/coffee-script/bin/coffee -o lib/ src/",
+    "test": "./node_modules/mocha/bin/mocha --require test/common.js"
+  },
+  "engines": {
+    "node": "~0.6.10"
+  },
+  "dependencies": {
+    "coffee-script": "1.2.0",
+    "jade": "0.19.0"
+  },
+  "devDependencies": {
+    "mocha": "0.12.1",
+    "expect.js": "0.1.2"
+  }
+}
