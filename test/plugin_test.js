@@ -1,3 +1,5 @@
+var jade = require('jade');
+
 describe('Plugin', function() {
   var plugin;
 
