@@ -21,5 +21,6 @@ module.exports = class JadeCompiler
       callback error, result
 
   # Add '../node_modules/jade/jade.js' to vendor files.
-  include: ->
-    [(sysPath.join '..', 'node_modules', 'jade', 'jade.js')]
+  include: [
+    (sysPath.join __dirname, '..', 'node_modules', 'jade', 'runtime.js')
+  ]
