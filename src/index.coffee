@@ -2,7 +2,8 @@ jade = require 'jade'
 sysPath = require 'path'
 
 module.exports = class JadeCompiler
-  compilerType: 'template'
+  brunchPlugin: yes
+  type: 'template'
   extension: 'jade'
 
   constructor: (@config) ->
