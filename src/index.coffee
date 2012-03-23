@@ -14,7 +14,8 @@ module.exports = class JadeCompiler
       content = jade.compile data, 
         compileDebug: no,
         client: yes,
-        filename: path
+        filename: path,
+        pretty: !!@config.plugins?.jade?.pretty
       result = "module.exports = #{content};"
     catch err
       error = err
