@@ -1,6 +1,6 @@
 {
   "name": "jade-brunch",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Adds Jade support to brunch.",
   "author": "Paul Miller (http://paulmillr.com/)",
   "homepage": "https://github.com/brunch/jade-brunch",
@@ -18,8 +18,8 @@
     "node": "~0.6.10 || 0.8 || 0.9"
   },
   "dependencies": {
-    "coffee-script": "1.3.3",
-    "jade": "0.26.3"
+    "coffee-script": "1.4.0",
+    "jade": "0.27.x"
   },
   "devDependencies": {
     "mocha": "1.2.2",

@@ -1,3 +1,6 @@
+# jade-brunch 1.4.0 (November 26, 2012)
+* Updated jade to latest 0.27.x release.
+
 # jade-brunch 1.3.0 (June 29, 2012)
 * Updated jade to 0.26.3.
 * Added node.js 0.8 and 0.9 support.
