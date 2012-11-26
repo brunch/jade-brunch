@@ -7,11 +7,11 @@ module.exports = class JadeCompiler
   extension: 'jade'
 
   constructor: (@config) ->
-    null
+    return
 
   compile: (data, path, callback) ->
     try
-      content = jade.compile data, 
+      content = jade.compile data,
         compileDebug: no,
         client: yes,
         filename: path,
