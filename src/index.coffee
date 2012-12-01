@@ -24,5 +24,5 @@ module.exports = class JadeCompiler
 
   # Add '../node_modules/jade/jade.js' to vendor files.
   include: [
-    (sysPath.join __dirname, '..', 'node_modules', 'jade', 'runtime.js')
+    (sysPath.join __dirname, '..', 'vendor', 'runtime.js')
   ]
