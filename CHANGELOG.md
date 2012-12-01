@@ -1,3 +1,6 @@
+# jade-brunch 1.4.1 (December 2, 2012)
+* Jade runtime is now saved locally to prevent npm conflicts.
+
 # jade-brunch 1.4.0 (November 26, 2012)
 * Updated jade to latest 0.27.x release.
 
