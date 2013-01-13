@@ -1,3 +1,6 @@
+# jade-brunch 1.5.0 (January 13, 2012)
+* Improved installation process.
+
 # jade-brunch 1.4.1 (December 2, 2012)
 * Jade runtime is now saved locally to prevent npm conflicts.
 
