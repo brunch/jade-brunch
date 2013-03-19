@@ -5,7 +5,6 @@ module.exports = class JadeCompiler
   brunchPlugin: yes
   type: 'template'
   extension: 'jade'
-
   _dependencyRegExp: /^ *(?:include|extends) (.*)/
 
   constructor: (@config) ->
