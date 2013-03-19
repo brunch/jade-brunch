@@ -6,6 +6,8 @@ module.exports = class JadeCompiler
   type: 'template'
   extension: 'jade'
 
+  _dependencyRegExp: /^ *(?:include|extends) (.*)/
+
   constructor: (@config) ->
     return
 
@@ -26,3 +28,28 @@ module.exports = class JadeCompiler
   include: [
     (sysPath.join __dirname, '..', 'vendor', 'runtime.js')
   ]
+
+  getDependencies: (data, path, callback) =>
+    parent = sysPath.dirname path
+    dependencies = data
+      .split('\n')
+      .map (line) =>
+        line.match(@_dependencyRegExp)
+      .filter (match) =>
+        match?.length > 0
+      .map (match) =>
+        match[1]
+      .filter (path) =>
+        !!path
+      .map (path) =>
+        if sysPath.extname(path) isnt ".#{@extension}"
+          path + ".#{@extension}"
+        else
+          path
+      .map (path) =>
+        if path.charAt(0) is '/'
+          sysPath.join @config.paths.root, path[1..]
+        else
+          sysPath.join parent, path
+    process.nextTick =>
+      callback null, dependencies
