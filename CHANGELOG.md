@@ -1,3 +1,6 @@
+# jade-brunch 1.7.0 (15 July 2013)
+* Added support for non-common.js wrappers.
+
 # jade-brunch 1.6.0 (22 June 2013)
 * Updated jade to 0.31.
 

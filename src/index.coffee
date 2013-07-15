@@ -12,12 +12,11 @@ module.exports = class JadeCompiler
 
   compile: (data, path, callback) ->
     try
-      content = jade.compile data,
+      result = jade.compile data,
         compileDebug: no,
         client: yes,
         filename: path,
         pretty: !!@config.plugins?.jade?.pretty
-      result = "module.exports = #{content};"
     catch err
       error = err
     finally
