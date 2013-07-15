@@ -1,3 +1,6 @@
+# jade-brunch 1.7.1 (15 July 2013)
+* Added UMD support.
+
 # jade-brunch 1.7.0 (15 July 2013)
 * Added support for non-common.js wrappers.
 
