@@ -1,5 +1,6 @@
 jade = require 'jade'
 sysPath = require 'path'
+umd = require 'umd-wrapper'
 
 module.exports = class JadeCompiler
   brunchPlugin: yes
@@ -12,11 +13,12 @@ module.exports = class JadeCompiler
 
   compile: (data, path, callback) ->
     try
-      result = jade.compile data,
+      compiled = jade.compile data,
         compileDebug: no,
         client: yes,
         filename: path,
         pretty: !!@config.plugins?.jade?.pretty
+      result = umd compiled
     catch err
       error = err
     finally
