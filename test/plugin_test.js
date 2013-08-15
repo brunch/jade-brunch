@@ -72,7 +72,7 @@ extends /valid4\n\
         sysPath.join('custom', 'valid4.jade'),
       ];
 
-      plugin = new Plugin({paths: {root: '.'}, plugins: {jade: {basePath: 'custom'}}});
+      plugin = new Plugin({paths: {root: '.'}, plugins: {jade: {basedir: 'custom'}}});
 
       plugin.getDependencies(content, 'template.jade', function(error, dependencies) {
         expect(error).not.to.be.ok;

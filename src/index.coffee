@@ -9,8 +9,8 @@ module.exports = class JadeCompiler
   extension: 'jade'
 
   constructor: (@config) ->
-    @basePath = @config.plugins?.jade?.basePath or sysPath.join @config.paths.root, 'app'
-    @getDependencies = progeny rootPath: @basePath
+    @basedir = @config.plugins?.jade?.basedir or sysPath.join @config.paths.root, 'app'
+    @getDependencies = progeny rootPath: @basedir
 
   compile: (data, path, callback) ->
     try
@@ -18,7 +18,7 @@ module.exports = class JadeCompiler
         compileDebug: no,
         client: yes,
         filename: path,
-        basedir: @basePath,
+        basedir: @basedir,
         pretty: !!@config.plugins?.jade?.pretty
       result = umd compiled
     catch err
