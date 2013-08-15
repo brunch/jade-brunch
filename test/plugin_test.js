@@ -35,17 +35,21 @@ include valid1\n\
 include valid1.jade\n\
 include ../../test/valid1\n\
 include ../../test/valid1.jade\n\
+include /valid3\n\
 extends valid2\n\
 extends valid2.jade\n\
 include ../../test/valid2\n\
 include ../../test/valid2.jade\n\
+extends /valid4\n\
 ";
 
       var expected = [
         sysPath.join('valid1.jade'),
         sysPath.join('..', '..', 'test', 'valid1.jade'),
+        sysPath.join('app', 'valid3.jade'),
         sysPath.join('valid2.jade'),
-        sysPath.join('..', '..', 'test', 'valid2.jade')
+        sysPath.join('..', '..', 'test', 'valid2.jade'),
+        sysPath.join('app', 'valid4.jade'),
       ];
 
       plugin.getDependencies(content, 'template.jade', function(error, dependencies) {
@@ -55,4 +59,27 @@ include ../../test/valid2.jade\n\
       });
     });
   });
+
+  describe('getDependenciesWithOverride', function() {
+    it('should output valid deps', function(done) {
+      var content = "\
+include /valid3\n\
+extends /valid4\n\
+";
+
+      var expected = [
+        sysPath.join('custom', 'valid3.jade'),
+        sysPath.join('custom', 'valid4.jade'),
+      ];
+
+      plugin = new Plugin({paths: {root: '.'}, plugins: {jade: {basePath: 'custom'}}});
+
+      plugin.getDependencies(content, 'template.jade', function(error, dependencies) {
+        expect(error).not.to.be.ok;
+        expect(dependencies).to.eql(expected);
+        done();
+      });
+    });
+  });
+
 });
