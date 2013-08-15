@@ -5,7 +5,7 @@ describe('Plugin', function() {
   var plugin;
 
   beforeEach(function() {
-    plugin = new Plugin({});
+    plugin = new Plugin({paths: {root: '.'}});
   });
 
   it('should be an object', function() {
@@ -43,12 +43,8 @@ include ../../test/valid2.jade\n\
 
       var expected = [
         sysPath.join('valid1.jade'),
-        sysPath.join('valid1.jade'),
-        sysPath.join('..', '..', 'test', 'valid1.jade'),
         sysPath.join('..', '..', 'test', 'valid1.jade'),
         sysPath.join('valid2.jade'),
-        sysPath.join('valid2.jade'),
-        sysPath.join('..', '..', 'test', 'valid2.jade'),
         sysPath.join('..', '..', 'test', 'valid2.jade')
       ];
 
