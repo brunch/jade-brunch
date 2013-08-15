@@ -59,4 +59,27 @@ extends /valid4\n\
       });
     });
   });
+
+  describe('getDependenciesWithOverride', function() {
+    it('should output valid deps', function(done) {
+      var content = "\
+include /valid3\n\
+extends /valid4\n\
+";
+
+      var expected = [
+        sysPath.join('custom', 'valid3.jade'),
+        sysPath.join('custom', 'valid4.jade'),
+      ];
+
+      plugin = new Plugin({paths: {root: '.'}, plugins: {jade: {basePath: 'custom'}}});
+
+      plugin.getDependencies(content, 'template.jade', function(error, dependencies) {
+        expect(error).not.to.be.ok;
+        expect(dependencies).to.eql(expected);
+        done();
+      });
+    });
+  });
+
 });
