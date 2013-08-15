@@ -12,6 +12,10 @@ Or, do manual install:
 * If you want to use git version of plugin, add
 `"jade-brunch": "git+ssh://git@github.com:brunch/jade-brunch.git"`.
 
+## Assumptions
+
+When using Jade's basedir relative `include` and `extend`, the basedir will be assumed to be 'app' within the Brunch root. See [#989](https://github.com/visionmedia/jade/pull/989)
+
 ## License
 
 The MIT License (MIT)
