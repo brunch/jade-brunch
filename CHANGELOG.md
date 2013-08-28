@@ -1,3 +1,6 @@
+# jade-brunch 1.7.2 (28 August 2013)
+* New way of parsing dependent files.
+
 # jade-brunch 1.7.1 (15 July 2013)
 * Added UMD support.
 
