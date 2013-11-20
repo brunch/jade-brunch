@@ -1,3 +1,6 @@
+# jade-brunch 1.7.3 (20 November 2013)
+* Support watching of plain-html partials referenced in jade source files.
+
 # jade-brunch 1.7.2 (28 August 2013)
 * New way of parsing dependent files.
 
