@@ -16,7 +16,7 @@
   "dependencies": {
     "jade": "~0.35.0",
     "umd-wrapper": "~0.1.0",
-    "progeny": "~0.1.1"
+    "progeny": "~0.2.1"
   },
   "devDependencies": {
     "mocha": "1.11.0",
