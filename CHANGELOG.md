@@ -1,3 +1,6 @@
+# jade-brunch 1.7.4 (16 december 2013)
+* New runtime.
+
 # jade-brunch 1.7.3 (20 November 2013)
 * Support watching of plain-html partials referenced in jade source files.
 
