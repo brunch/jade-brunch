@@ -1,3 +1,6 @@
+# jade-brunch 1.7.5 (16 December 2013)
+* Fixed runtime inclusion.
+
 # jade-brunch 1.7.4 (16 december 2013)
 * New runtime.
 

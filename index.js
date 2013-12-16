@@ -33,6 +33,6 @@ JadeCompiler.prototype.compile = function(data, path, callback) {
   }
 };
 
-JadeCompiler.prototype.include = [sysPath.join(__dirname, '..', 'vendor', 'runtime.js')];
+JadeCompiler.prototype.include = [sysPath.join(__dirname, 'runtime.js')];
 
 module.exports = JadeCompiler;
