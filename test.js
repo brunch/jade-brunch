@@ -1,3 +1,5 @@
+var expect = require('chai').expect;
+var Plugin = require('./');
 var jade = require('jade');
 var sysPath = require('path');
 
