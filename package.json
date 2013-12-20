@@ -8,7 +8,6 @@
     "type": "git",
     "url": "git@github.com:brunch/jade-brunch.git"
   },
-  "main": ".",
   "scripts": {
     "test": "node_modules/.bin/mocha"
   },
