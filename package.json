@@ -12,7 +12,7 @@
     "test": "node_modules/.bin/mocha"
   },
   "dependencies": {
-    "jade": "~0.35.0",
+    "jade": "~1.0.0",
     "umd-wrapper": "~0.1.0",
     "progeny": "~0.2.1"
   },
