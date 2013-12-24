@@ -19,7 +19,7 @@ describe('Plugin', function() {
   });
 
   it('should compile and produce valid result', function(done) {
-    var content = '!!! 5';
+    var content = 'doctype html';
     var expected = '<!DOCTYPE html>';
 
     plugin.compile(content, 'template.jade', function(error, data) {
