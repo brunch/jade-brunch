@@ -18,9 +18,8 @@ JadeCompiler.prototype.extension = 'jade';
 JadeCompiler.prototype.compile = function(data, path, callback) {
   var compiled, error, result;
   try {
-    compiled = jade.compile(data, {
+    compiled = jade.compileClient(data, {
       compileDebug: false,
-      client: true,
       filename: path,
       basedir: this.basedir,
       pretty: this.pretty
