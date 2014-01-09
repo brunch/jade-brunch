@@ -2,6 +2,7 @@ var expect = require('chai').expect;
 var Plugin = require('./');
 var jade = require('jade');
 var sysPath = require('path');
+var fs = require('fs');
 
 describe('Plugin', function() {
   var plugin;
@@ -27,6 +28,18 @@ describe('Plugin', function() {
       expect(eval(data)()).to.equal(expected);
       done();
     });
+  });
+
+  describe('runtime', function() {
+
+    it('should include jade/runtime.js', function(){
+      expect(plugin.include).to.match(/jade\/runtime\.js$/);
+    });
+
+    it('jade/runtime.js should exist', function(){
+      expect(fs.existsSync(plugin.include[0])).to.be.ok;
+    });
+
   });
 
 
