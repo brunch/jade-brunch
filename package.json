@@ -12,12 +12,12 @@
     "test": "node_modules/.bin/mocha"
   },
   "dependencies": {
-    "jade": "~1.0.0",
+    "jade": "~1.1.5",
     "umd-wrapper": "~0.1.0",
     "progeny": "~0.2.1"
   },
   "devDependencies": {
-    "mocha": "1.11.0",
-    "chai": "1.7.0"
+    "mocha": "~1.17.1",
+    "chai": "~1.8.1"
   }
 }
