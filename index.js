@@ -22,9 +22,9 @@ function JadeCompiler(cfg) {
   // cloning is mandatory because config is not mutable
   this.options = clone(config) || {}
 
-  this.options['compileDebug'] = false;
-  this.options['client'] = true;
-  this.options['basedir'] = (config && config.basedir) || defaultBaseDir;
+  this.options.compileDebug = false;
+  this.options.client = true;
+  this.options.basedir = (config && config.basedir) || defaultBaseDir;
 
   this.getDependencies = progeny({rootPath: this.options.basedir});
 }
@@ -36,7 +36,7 @@ JadeCompiler.prototype.extension = 'jade';
 JadeCompiler.prototype.compile = function(data, path, callback) {
   var compiled, error, result;
   try {
-    this.options['filename'] = path;
+    this.options.filename = path;
     // cloning is mandatory because Jade changes it
     options = clone(this.options);
     compiled = jade.compileClient(data, options);
