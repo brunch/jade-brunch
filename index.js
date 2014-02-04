@@ -36,9 +36,9 @@ JadeCompiler.prototype.extension = 'jade';
 JadeCompiler.prototype.compile = function(data, path, callback) {
   var compiled, error, result;
   try {
-    this.options.filename = path;
     // cloning is mandatory because Jade changes it
     options = clone(this.options);
+    options.filename = path;
     compiled = jade.compileClient(data, options);
     return result = umd(compiled);
   } catch (_error) {
