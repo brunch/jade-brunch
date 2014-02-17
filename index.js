@@ -39,7 +39,12 @@ JadeCompiler.prototype.compile = function(data, path, callback) {
     // cloning is mandatory because Jade changes it
     options = clone(this.options);
     options.filename = path;
-    compiled = jade.compileClient(data, options);
+    if(options.preCompile === true) {
+      compiled = jade.compile(data,options)();
+      compiled = JSON.stringify(compiled);
+    } else {
+      compiled = jade.compileClient(data, options);
+    }
     return result = umd(compiled);
   } catch (_error) {
     error = _error;
