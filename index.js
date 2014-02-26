@@ -20,7 +20,7 @@ function JadeCompiler(cfg) {
   var config = (jade && jade.options) || jade;
 
   // cloning is mandatory because config is not mutable
-  this.options = clone(config) || {}
+  this.options = clone(config) || {};
   this.options.compileDebug = false;
   this.options.client = true;
   this.options.basedir = (config && config.basedir) || defaultBaseDir;
