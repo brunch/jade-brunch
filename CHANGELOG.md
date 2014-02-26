@@ -1,3 +1,8 @@
+# jade-brunch 1.8.1 (26 February 2014)
+* Allowed disabling `compileClient` option.
+* All options can be now passed to jade.
+* Bumped jade to 1.2
+
 # jade-brunch 1.8.0 (16 December 2013)
 * Updated jade to 1.0.x
 
