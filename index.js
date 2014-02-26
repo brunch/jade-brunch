@@ -16,12 +16,11 @@ function clone(obj) {
 function JadeCompiler(cfg) {
   if (cfg == null) cfg = {};
   var defaultBaseDir = sysPath.join(cfg.paths.root, 'app');
-  var config = (cfg.plugins && cfg.plugins.jade && cfg.plugins.jade.options)
-               || (cfg.plugins && cfg.plugins.jade);
+  var jade = cfg.plugins && cfg.plugins.jade;
+  var config = (jade && jade.options) || jade;
 
   // cloning is mandatory because config is not mutable
   this.options = clone(config) || {}
-
   this.options.compileDebug = false;
   this.options.client = true;
   this.options.basedir = (config && config.basedir) || defaultBaseDir;
@@ -34,18 +33,18 @@ JadeCompiler.prototype.type = 'template';
 JadeCompiler.prototype.extension = 'jade';
 
 JadeCompiler.prototype.compile = function(data, path, callback) {
-  var compiled, error, result;
+  var options = clone(this.options);
+  options.filename = path;
+  var compiled, precompiled, error, result;
   try {
     // cloning is mandatory because Jade changes it
-    options = clone(this.options);
-    options.filename = path;
-    if(options.preCompile === true) {
-      compiled = jade.compile(data,options)();
-      compiled = JSON.stringify(compiled);
+    if (options.preCompile === true) {
+      precompiled = jade.compile(data,options)();
+      compiled = JSON.stringify(precompiled);
     } else {
       compiled = jade.compileClient(data, options);
     }
-    return result = umd(compiled);
+    result = umd(compiled);
   } catch (_error) {
     error = _error;
   } finally {
@@ -53,6 +52,8 @@ JadeCompiler.prototype.compile = function(data, path, callback) {
   }
 };
 
-JadeCompiler.prototype.include = [sysPath.join(__dirname, 'node_modules', 'jade', 'runtime.js')];
+JadeCompiler.prototype.include = [
+  sysPath.join(__dirname, 'node_modules', 'jade', 'runtime.js')
+];
 
 module.exports = JadeCompiler;
