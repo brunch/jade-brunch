@@ -19,6 +19,11 @@ function JadeCompiler(cfg) {
   var jade = cfg.plugins && cfg.plugins.jade;
   var config = (jade && jade.options) || jade;
 
+  // Allow runtime to be excluded
+  if (noRuntime === true) {
+    JadeCompiler.prototype.include = [];
+  }
+
   // cloning is mandatory because config is not mutable
   this.options = clone(config) || {};
   this.options.compileDebug = false;
