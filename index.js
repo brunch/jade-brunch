@@ -18,10 +18,9 @@ function JadeCompiler(cfg) {
   var defaultBaseDir = sysPath.join(cfg.paths.root, 'app');
   var jade = cfg.plugins && cfg.plugins.jade;
   var config = (jade && jade.options) || jade;
-  var noRuntime = config.noRuntime || false;
 
   // Allow runtime to be excluded
-  if (noRuntime === true) {
+  if (config && config.noRuntime) {
     JadeCompiler.prototype.include = [];
   }
 
