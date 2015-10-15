@@ -4,7 +4,11 @@
   "description": "Adds Jade support to brunch.",
   "author": "Paul Miller (http://paulmillr.com/)",
   "homepage": "https://github.com/brunch/jade-brunch",
-  "keywords": ["brunchplugin", "jade", "template"],
+  "keywords": [
+    "brunchplugin",
+    "jade",
+    "template"
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.com:brunch/jade-brunch.git"
@@ -18,7 +22,7 @@
     "progeny": "~0.2.1"
   },
   "devDependencies": {
-    "mocha": "~1.17.1",
-    "chai": "~1.8.1"
+    "chai": "^3.3.0",
+    "mocha": "^2.3.3"
   }
 }
