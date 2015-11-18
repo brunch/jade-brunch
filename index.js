@@ -58,7 +58,7 @@ JadeCompiler.prototype.compile = function(data, path, callback) {
 };
 
 JadeCompiler.prototype.include = [
-  sysPath.join(__dirname, 'node_modules', 'jade', 'runtime.js')
+  sysPath.join(sysPath.dirname(require.resolve('jade')), 'runtime.js')
 ];
 
 module.exports = JadeCompiler;
