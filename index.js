@@ -30,7 +30,10 @@ function JadeCompiler(cfg) {
   this.options.client = true;
   this.options.basedir = (config && config.basedir) || defaultBaseDir;
 
-  this.getDependencies = progeny({rootPath: this.options.basedir});
+  this.getDependencies = progeny({
+    rootPath: this.options.basedir,
+    reverseArgs: true
+  });
 }
 
 JadeCompiler.prototype.brunchPlugin = true;
