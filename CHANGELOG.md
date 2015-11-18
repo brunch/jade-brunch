@@ -1,3 +1,7 @@
+# jade-brunch 1.8.2 (18 November 2015)
+* npm@3 compatibility for including jade runtime file in build
+* Bumped jade dep to ^1.11.0
+
 # jade-brunch 1.8.1 (26 February 2014)
 * Allowed disabling `compileClient` option.
 * All options can be now passed to jade.
