@@ -60,16 +60,27 @@ extends /valid4\n\
 
       var expected = [
         sysPath.join('valid1.jade'),
-        sysPath.join('..', '..', 'test', 'valid1.jade'),
         sysPath.join('app', 'valid3.jade'),
         sysPath.join('valid2.jade'),
-        sysPath.join('..', '..', 'test', 'valid2.jade'),
         sysPath.join('app', 'valid4.jade'),
       ];
 
+      // progeny now only outputs actually found files by default
+      fs.mkdirSync('app');
+      expected.forEach(function(file) {
+        fs.writeFileSync(file, 'div');
+      });
+
       plugin.getDependencies(content, 'template.jade', function(error, dependencies) {
         expect(error).not.to.be.ok;
-        expect(dependencies).to.eql(expected);
+        expect(dependencies).to.have.members(expected);
+
+        // clean up temp fixture files
+        expected.forEach(function(file) {
+          fs.unlinkSync(file);
+        });
+        fs.rmdirSync('app');
+
         done();
       });
     });
@@ -77,6 +88,7 @@ extends /valid4\n\
 
   describe('getDependenciesWithOverride', function() {
     it('should output valid deps', function(done) {
+
       var content = "\
 include /valid3\n\
 extends /valid4\n\
@@ -87,11 +99,24 @@ extends /valid4\n\
         sysPath.join('custom', 'valid4.jade'),
       ];
 
+      // progeny now only outputs actually found files by default
+      fs.mkdirSync('custom');
+      expected.forEach(function(file) {
+        fs.writeFileSync(file, 'div');
+      });
+
       plugin = new Plugin({paths: {root: '.'}, plugins: {jade: {basedir: 'custom'}}});
 
       plugin.getDependencies(content, 'template.jade', function(error, dependencies) {
         expect(error).not.to.be.ok;
-        expect(dependencies).to.eql(expected);
+        expect(dependencies).to.have.members(expected);
+
+        // clean up temp fixture files
+        expected.forEach(function(file) {
+          fs.unlinkSync(file);
+        });
+        fs.rmdirSync('custom');
+
         done();
       });
     });
