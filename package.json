@@ -14,7 +14,7 @@
     "url": "git@github.com:brunch/jade-brunch.git"
   },
   "scripts": {
-    "test": "node_modules/.bin/mocha"
+    "test": "node_modules/.bin/eslint index.js && node_modules/.bin/mocha"
   },
   "dependencies": {
     "jade": "^1.11.0",
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "chai": "^3.3.0",
-    "mocha": "^2.3.3"
+    "mocha": "^2.3.3",
+    "eslint": "^1.10.3"
   }
 }
