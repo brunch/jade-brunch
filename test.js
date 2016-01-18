@@ -23,11 +23,10 @@ describe('Plugin', function() {
     var content = 'doctype html';
     var expected = '<!DOCTYPE html>';
 
-    plugin.compile(content, 'template.jade', function(error, data) {
-      expect(error).not.to.be.ok;
+    plugin.compile({data: content, path: 'template.jade'}).then(data => {
       expect(eval(data)()).to.equal(expected);
       done();
-    });
+    }, error => expect(error).not.to.be.ok);
   });
 
   describe('runtime', function() {
