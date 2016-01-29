@@ -1,3 +1,6 @@
+# jade-brunch 2.0.0 (Jan 29, 2016)
+* Updated source code & API. The plugin would now only work with Brunch 2.2 and higher.
+
 # jade-brunch 1.8.2 (18 November 2015)
 * npm@3 compatibility for including jade runtime file in build
 * Bumped jade dep to ^1.11.0
