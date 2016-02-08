@@ -17,9 +17,9 @@
     "test": "node_modules/.bin/eslint index.js && node_modules/.bin/mocha"
   },
   "dependencies": {
-    "jade": "^1.11.0",
-    "progeny": "^0.5.2",
-    "umd-wrapper": "^0.1.0"
+    "jade": "~1.11.0",
+    "progeny": "~0.5.2",
+    "umd-wrapper": "~0.1.0"
   },
   "devDependencies": {
     "chai": "^3.3.0",
