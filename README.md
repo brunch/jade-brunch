@@ -14,9 +14,13 @@ Or, do manual install:
 * If you want to use git version of plugin, add
 `"jade-brunch": "git+ssh://git@github.com:brunch/jade-brunch.git"`.
 
+You can also use `jade-brunch` to compile jade into html. Just place your jade files into `app/assets`.
+
 ## Assumptions
 
 When using Jade's basedir relative `include` and `extend`, the basedir will be assumed to be 'app' within the Brunch root. See [#989](https://github.com/visionmedia/jade/pull/989)
+
+For jade files in `app/assets`, the basedir will be assumed to be `app/assets`.
 
 ## License
 

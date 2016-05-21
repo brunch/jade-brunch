@@ -19,6 +19,7 @@ class JadeCompiler {
   constructor(cfg) {
     if (cfg == null) cfg = {};
     const defaultBaseDir = sysPath.join(cfg.paths.root, 'app');
+    const defaultStaticBaseDir = sysPath.join(defaultBaseDir, 'assets');
     const jade = cfg.plugins && cfg.plugins.jade;
     const config = (jade && jade.options) || jade;
 
@@ -28,15 +29,30 @@ class JadeCompiler {
     }
 
     // cloning is mandatory because config is not mutable
+    this.locals = jade && jade.locals || {};
     this.options = clone(config) || {};
     this.options.compileDebug = false;
     this.options.client = true;
     this.options.basedir = (config && config.basedir) || defaultBaseDir;
+    this.options.staticBasedir = (config && config.staticBasedir) || defaultStaticBaseDir;
 
-    this.getDependencies = progeny({
+    const getDependencies = progeny({
       rootPath: this.options.basedir,
       reverseArgs: true
     });
+
+    const getDependenciesStatic = progeny({
+      rootPath: this.options.staticBasedir,
+      reverseArgs: true
+    });
+
+    this.getDependencies = (data, path, cb) => {
+      if (sysPath.resolve(path).indexOf(sysPath.resolve(this.options.staticBasedir)) === 0) {
+        return getDependenciesStatic(data, path, cb);
+      } else {
+        return getDependencies(data, path, cb);
+      }
+    };
   }
 
   compile(params) {
@@ -66,6 +82,24 @@ class JadeCompiler {
       }
     });
   }
+
+  compileStatic(params) {
+    const data = params.data;
+    const path = params.path;
+
+    const options = Object.assign({}, this.options);
+    const locals = Object.assign({}, this.locals);
+    try {
+      options.filename = path;
+      options.basedir = options.staticBasedir;
+      locals.filename = path.replace(new RegExp('^' + options.basedir + '/'), '');
+      const fn = jade.compile(data, options);
+      const compiled = fn(locals);
+      return Promise.resolve(compiled);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  }
 }
 
 let jadePath = require.resolve('jade');
@@ -81,5 +115,6 @@ JadeCompiler.prototype.include = [
 JadeCompiler.prototype.brunchPlugin = true;
 JadeCompiler.prototype.type = 'template';
 JadeCompiler.prototype.extension = 'jade';
+JadeCompiler.prototype.staticTargetExtension = 'html';
 
 module.exports = JadeCompiler;
