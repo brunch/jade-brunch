@@ -3,7 +3,7 @@ Adds [Jade](http://jade-lang.com) support to [brunch](http://brunch.io), by
 compiling templates into dynamic javascript modules and `.jade` assets into plain HTML.
 
 ## Usage
-Install the plugin via npm with `npm install --save jade-brunch`.
+Install the plugin via npm with `npm install --save-dev jade-brunch`.
 
 Or, do manual install:
 
