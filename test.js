@@ -1,40 +1,41 @@
-var expect = require('chai').expect;
-var Plugin = require('./');
-var jade = require('jade');
-var sysPath = require('path');
-var fs = require('fs');
+'use strict';
 
-describe('Plugin', function() {
-  var plugin;
+const expect = require('chai').expect;
+const Plugin = require('./');
+const jade = require('jade');
+const sysPath = require('path');
+const fs = require('fs');
 
-  beforeEach(function() {
+describe('Plugin', () => {
+  let plugin;
+
+  beforeEach(() => {
     plugin = new Plugin({paths: {root: '.'}});
   });
 
-  it('should be an object', function() {
+  it('should be an object', () => {
     expect(plugin).to.be.ok;
   });
 
-  it('should has #compile method', function() {
+  it('should has #compile method', () => {
     expect(plugin.compile).to.be.an.instanceof(Function);
   });
 
-  it('should compile and produce valid result', function(done) {
-    var content = 'doctype html';
-    var expected = '<!DOCTYPE html>';
+  it('should compile and produce valid result', () => {
+    const content = 'doctype html';
+    const expected = '<!DOCTYPE html>';
 
-    plugin.compile({data: content, path: 'template.jade'}).then(data => {
+    return plugin.compile({data: content, path: 'template.jade'}).then(data => {
       expect(eval(data)()).to.equal(expected);
-      done();
     }, error => expect(error).not.to.be.ok);
   });
 
-  it('should compile template string with data', function(done) {
-    var expected = '<!DOCTYPE html>' +
+  it('should compile template string with data', () => {
+    const expected = '<!DOCTYPE html>' +
       '<html lang="en">' +
       '<title>Brunch is awesome!</title>' +
       '</html>';
-    var staticContent = 'doctype html' +
+    const staticContent = 'doctype html' +
       '\nhtml(lang="en")' +
       '\n title #{title}';
 
@@ -51,28 +52,27 @@ describe('Plugin', function() {
       }
     });
 
-    plugin.compileStatic({data: staticContent, path: 'template.jade'}).then(data => {
+    return plugin.compileStatic({data: staticContent, path: 'template.jade'}).then(data => {
       expect(data).to.equal(expected);
-      done();
     }, error => expect(error).not.to.be.ok);
   });
 
-  describe('runtime', function() {
+  describe('runtime', () => {
 
-    it('should include jade/runtime.js', function(){
+    it('should include jade/runtime.js', () => {
       expect(plugin.include).to.match(/jade\/runtime\.js$/);
     });
 
-    it('jade/runtime.js should exist', function(){
+    it('jade/runtime.js should exist', () => {
       expect(fs.existsSync(plugin.include[0])).to.be.ok;
     });
 
   });
 
 
-  describe('getDependencies', function() {
-    it('should output valid deps', function(done) {
-      var content = "\
+  describe('getDependencies', () => {
+    it('should output valid deps', done => {
+      const content = "\
 include valid1\n\
 include valid1.jade\n\
 include ../../test/valid1\n\
@@ -85,7 +85,7 @@ include ../../test/valid2.jade\n\
 extends /valid4\n\
 ";
 
-      var expected = [
+      const expected = [
         sysPath.join('valid1.jade'),
         sysPath.join('app', 'valid3.jade'),
         sysPath.join('valid2.jade'),
@@ -94,11 +94,11 @@ extends /valid4\n\
 
       // progeny now only outputs actually found files by default
       fs.mkdirSync('app');
-      expected.forEach(function(file) {
+      expected.forEach(file => {
         fs.writeFileSync(file, 'div');
       });
 
-      plugin.getDependencies(content, 'template.jade', function(error, dependencies) {
+      plugin.getDependencies(content, 'template.jade', (error, dependencies) => {
         expect(error).not.to.be.ok;
         expect(dependencies).to.have.members(expected);
 
@@ -113,33 +113,33 @@ extends /valid4\n\
     });
   });
 
-  describe('getDependenciesWithOverride', function() {
-    it('should output valid deps', function(done) {
+  describe('getDependenciesWithOverride', () => {
+    it('should output valid deps', done => {
 
-      var content = "\
+      const content = "\
 include /valid3\n\
 extends /valid4\n\
 ";
 
-      var expected = [
+      const expected = [
         sysPath.join('custom', 'valid3.jade'),
         sysPath.join('custom', 'valid4.jade'),
       ];
 
       // progeny now only outputs actually found files by default
       fs.mkdirSync('custom');
-      expected.forEach(function(file) {
+      expected.forEach(file => {
         fs.writeFileSync(file, 'div');
       });
 
       plugin = new Plugin({paths: {root: '.'}, plugins: {jade: {basedir: 'custom'}}});
 
-      plugin.getDependencies(content, 'template.jade', function(error, dependencies) {
+      plugin.getDependencies(content, 'template.jade', (error, dependencies) => {
         expect(error).not.to.be.ok;
         expect(dependencies).to.have.members(expected);
 
         // clean up temp fixture files
-        expected.forEach(function(file) {
+        expected.forEach(file => {
           fs.unlinkSync(file);
         });
         fs.rmdirSync('custom');
