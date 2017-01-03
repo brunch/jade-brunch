@@ -29,6 +29,34 @@ describe('Plugin', function() {
     }, error => expect(error).not.to.be.ok);
   });
 
+  it('should compile template string with data', function(done) {
+    var expected = '<!DOCTYPE html>' +
+      '<html lang="en">' +
+      '<title>Brunch is awesome!</title>' +
+      '</html>';
+    var staticContent = 'doctype html' +
+      '\nhtml(lang="en")' +
+      '\n title #{title}';
+
+    plugin = new Plugin({
+      paths: {
+        root: '.'
+      },
+      plugins: {
+        jade: {
+          locals: {
+            title: 'Brunch is awesome!'
+          }
+        }
+      }
+    });
+
+    plugin.compileStatic({data: staticContent, path: 'template.jade'}).then(data => {
+      expect(data).to.equal(expected);
+      done();
+    }, error => expect(error).not.to.be.ok);
+  });
+
   describe('runtime', function() {
 
     it('should include jade/runtime.js', function(){

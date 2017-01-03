@@ -22,8 +22,8 @@
     "umd-wrapper": "~0.1.0"
   },
   "devDependencies": {
-    "chai": "^3.3.0",
-    "mocha": "^2.3.3",
+    "chai": "^3",
+    "mocha": "^3",
     "eslint": "^2.1.0"
   }
 }
